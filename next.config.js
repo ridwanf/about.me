@@ -31,6 +31,8 @@ const ContentSecurityPolicy = `
  */
 const config = {
 	images: {
+		loader: 'akamai',
+    path: '',
 		domains: [
 			// Discord assets
 			'cdn.discordapp.com',
