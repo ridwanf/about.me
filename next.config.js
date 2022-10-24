@@ -1,9 +1,18 @@
 const WindiCSS = require('windicss-webpack-plugin');
 const { withAxiom } = require('next-axiom');
 
-const repo = 'https://github.com/ridwanf/nuro.dev'
-const assetPrefix = `/${repo}/`
-const basePath = `/${repo}`
+// const isGithubActions = process.env.GITHUB_ACTIONS || false
+
+// let assetPrefix = ""
+// let basePath = "/"
+
+// if (isGithubActions) {
+//   // trim off `<owner>/`
+//   const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, '')
+
+//   assetPrefix = `/${repo}/`
+//   basePath = `/${repo}`
+// }
 
 const ContentSecurityPolicy = `
   child-src *.google.com streamable.com;
@@ -93,8 +102,8 @@ const config = {
 
 		return config;
 	},
-	assetPrefix: assetPrefix,
-  basePath: basePath,
+	// assetPrefix: assetPrefix,
+  // basePath: basePath,
 };
 
 
