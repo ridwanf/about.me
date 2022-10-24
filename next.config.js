@@ -1,6 +1,10 @@
 const WindiCSS = require('windicss-webpack-plugin');
 const { withAxiom } = require('next-axiom');
 
+const repo = 'https://github.com/ridwanf/nuro.dev'
+const assetPrefix = `/${repo}/`
+const basePath = `/${repo}`
+
 const ContentSecurityPolicy = `
   child-src *.google.com streamable.com;
   connect-src *;
@@ -89,6 +93,9 @@ const config = {
 
 		return config;
 	},
+	assetPrefix: assetPrefix,
+  basePath: basePath,
 };
+
 
 module.exports = withAxiom(config);
