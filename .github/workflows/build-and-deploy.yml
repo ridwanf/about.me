@@ -28,7 +28,6 @@ jobs:
           npm set-script build "next build"
           npm set-script export "next export"
       - name: Deploy
-        uses: ridwanf/github-pages-deploy-action 
         with:
           branch: gh-pages
           folder: out        
