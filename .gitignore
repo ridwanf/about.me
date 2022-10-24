@@ -10,7 +10,7 @@
 
 # next.js
 /.next/
-/out/
+# /out/
 
 # next-sitemap
 public/robots.txt
