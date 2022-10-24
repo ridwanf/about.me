@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-		
     runs-on: ubuntu-latest
 
     steps:
@@ -29,8 +28,7 @@ jobs:
           npm set-script build "next build"
           npm set-script export "next export"
       - name: Deploy
-        # https://github.com/JamesIves/github-pages-deploy-action
-        uses: ridwanf/github-pages-deploy-action@4.4.0 
+        uses: ridwanf/github-pages-deploy-action 
         with:
           branch: gh-pages
           folder: out        
