@@ -8,26 +8,32 @@ on:
   workflow_dispatch:
 
 jobs:
-  deployment:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix: 
+        node-version: [14.x]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - name: Cache node modules
+        uses: actions/cache@v2
         with:
-          node-version: 'lts/*'
-          cache: 'npm'
+          path: "**/node_modules"
+          key: ${{runner.os}}-modules-${{hasFiles('**/yarn.lock')}}
+
+      - name: Install
+        run:  yarn install
 
       - name: Build
         run: |
-          npm i
-          npm run build
-          npm run export
+          yarn export
+          touch out/.nojekyll
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_PAGES_TOKEN}}
       - name: Deploy
-        # https://github.com/JamesIves/github-pages-deploy-action
-        uses: peaceiris/actions-gh-pages@v3
+        uses: JamesIves/github-pages-deploy-action@4
         with:
-          branch: gh-pages
-          publish_dir: ./out
+          BRANCH: gh-pages
+          FOLDER: out
+          CLEAN: true
